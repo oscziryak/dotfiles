@@ -39,6 +39,25 @@ $ dotfiles reset --hard
 $ dotfiles config --local status.showUntrackedFiles no
 ```
 
+# Add submodule
+
+```bash
+$ cd $HOME
+$ dotfiles submodule add https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
+$ dotfiles status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+      new file:   .gitmodules
+      new file:   .vim/bundle/Vundle.vim
+$ dotfiles commit -am "Add Vundle.vim Submodule to ~/.vim/bundle/Vundle.vim
+$ dotfiles pull --rebase origin master
+$ dotfiles push
+```
+
 # Install Vundle
 
 ```bash
