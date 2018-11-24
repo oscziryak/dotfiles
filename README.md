@@ -1,5 +1,7 @@
 # Install dotfiles
 
+## Bare git repo
+
 ```bash
 $ echo 'alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"' >> $HOME/.bashrc
 $ source ~/.bashrc
@@ -25,6 +27,17 @@ Aborting
 While there are quite a few places on the internet that mention doing a `git reset --hard`, that does not work in this situation. The untracked files will still be there in their original form. So we have to clean the working directory of them before we can place the version-controlled versions of those files.
 
 This command takes the list of untracked files from `dotfiles checkout` by parsing the stderr of the output, and one-by-one force-cleaning them up, before executing the checkout at the very end, resulting in the correct file versions being placed in the correct places.
+
+## Separate git dir
+
+```bash
+$ echo 'alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"' >> $HOME/.bashrc
+$ source ~/.bashrc
+$ echo ".dotfiles.git" >> .gitignore
+$ git clone --separate-git-dir $HOME/.dotfiles.git https://www.gitlab.com/smacz/dotfiles.git
+$ dotfiles reset --hard
+$ dotfiles config --local status.showUntrackedFiles no
+```
 
 # Install Vundle
 
